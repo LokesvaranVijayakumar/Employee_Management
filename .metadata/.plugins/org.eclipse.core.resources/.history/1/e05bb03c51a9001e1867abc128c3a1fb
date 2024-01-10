@@ -1,0 +1,10 @@
+package com.mini.loginBackend.service.impl;
+
+import com.mini.loginBackend.repository.AdminRepository;
+import com.mini.loginBackend.service.AdminService;
+
+public class AdminServiceImpl implements AdminService {
+	
+	private AdminRepository adminRepository;
+
+}

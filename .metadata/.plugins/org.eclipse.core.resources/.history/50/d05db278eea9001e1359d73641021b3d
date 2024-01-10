@@ -1,0 +1,11 @@
+package com.mini.loginBackend.service;
+
+import java.util.List;
+
+import com.mini.loginBackend.entity.Employee;
+
+public interface EmployeeService {
+
+	List<EmployeeDTO> getAllEmployees();
+
+}

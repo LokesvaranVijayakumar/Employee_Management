@@ -1,0 +1,57 @@
+package com.mini.loginBackend.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.mini.loginBackend.dto.AdminDTO;
+import com.mini.loginBackend.dto.LoginDTO;
+import com.mini.loginBackend.entity.Admin;
+import com.mini.loginBackend.entity.User;
+import com.mini.loginBackend.repository.AdminRepository;
+import com.mini.loginBackend.service.AdminService;
+
+@Service
+public class AdminServiceImpl implements AdminService {
+	
+	@Autowired
+	private AdminRepository adminRepository;
+
+	@Override
+	public List<AdminDTO> getAllAdmins() {
+		List<Admin> admins = adminRepository.findAll();
+		List<AdminDTO> adminDTO = new ArrayList<>();
+		for(Admin admin: admins) {
+			AdminDTO ad = new AdminDTO();
+			BeanUtils.copyProperties(admin, ad);
+			adminDTO.add(ad);
+			
+		}
+		return adminDTO;
+	}
+
+	@Override
+	public ResponseEntity<String> login(LoginDTO loginDTO) {
+		Optional<User> optionalDBUser = adminRepository.findAdminByEmailId(loginDTO.getEmailId());
+		System.out.println("optionalDBUser :"+optionalDBUser.get());
+		if(optionalDBUser.isPresent()) {
+			User userDB = optionalDBUser.get();
+			System.out.println("userDB :"+userDB);
+			if(loginDTO.getPassword().equals(userDB.getPassword())) {
+				return ResponseEntity.ok("User Login Sucess");
+			} else {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Login Credentials");
+			}
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User not found! Signup first"); 
+		}
+	}
+
+
+}

@@ -1,0 +1,22 @@
+package com.mini.loginBackend.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mini.loginBackend.dto.AdminDTO;
+import com.mini.loginBackend.repository.AdminRepository;
+import com.mini.loginBackend.service.AdminService;
+
+public class AdminServiceImpl implements AdminService {
+	
+	@Autowired
+	private AdminRepository adminRepository;
+
+	@Override
+	public List<AdminDTO> getAllAdmins() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

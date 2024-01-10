@@ -1,0 +1,48 @@
+package com.mini.loginBackend.dto;
+
+public class LoginDTO2 {
+
+	private Long id;
+	private String name;
+	private String emailId;
+	private String role;
+	public LoginDTo2() {}
+	public LoginDTO2(Long id, String name, String emailId, String role) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.emailId = emailId;
+		this.role = role;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
+	@Override
+	public String toString() {
+		return "LoginDTO2 [id=" + id + ", name=" + name + ", emailId=" + emailId + ", role=" + role + "]";
+	}
+	
+	
+	
+}

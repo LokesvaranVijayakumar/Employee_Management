@@ -1,0 +1,5 @@
+package com.mini.loginBackend.exception;
+
+public class ResourceNotFoundException {
+
+}

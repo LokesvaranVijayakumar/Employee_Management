@@ -1,0 +1,13 @@
+package com.mini.loginBackend.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mini.loginBackend.repository.AdminRepository;
+import com.mini.loginBackend.service.AdminService;
+
+public class AdminServiceImpl implements AdminService {
+	
+	@Autowired
+	private AdminRepository adminRepository;
+
+}

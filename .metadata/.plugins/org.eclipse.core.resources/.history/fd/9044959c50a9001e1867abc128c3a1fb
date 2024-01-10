@@ -1,0 +1,21 @@
+package com.mini.loginBackend.service;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.mini.loginBackend.dto.AdminDTO;
+import com.mini.loginBackend.dto.AdminLoginDTO;
+import com.mini.loginBackend.dto.LoginDTO;
+
+public interface AdminService {
+
+//	String signUp(AdminDTO adminDTO);
+
+	ResponseEntity<String> adminLogin(AdminLoginDTO adminLoginDTO);
+
+	List<AdminDTO> getAllAdmins();
+
+//	List<UserDTO> getAllUsers();
+
+}

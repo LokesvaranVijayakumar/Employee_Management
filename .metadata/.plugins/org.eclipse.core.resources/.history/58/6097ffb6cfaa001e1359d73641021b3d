@@ -1,0 +1,5 @@
+package com.mini.loginBackend.dto;
+
+public class LoginDTO2 {
+
+}

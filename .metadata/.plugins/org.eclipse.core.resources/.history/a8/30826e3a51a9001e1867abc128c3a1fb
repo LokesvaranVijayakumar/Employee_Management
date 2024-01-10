@@ -1,0 +1,7 @@
+package com.mini.loginBackend.service.impl;
+
+import com.mini.loginBackend.service.AdminService;
+
+public class AdminServiceImpl implements AdminService {
+
+}

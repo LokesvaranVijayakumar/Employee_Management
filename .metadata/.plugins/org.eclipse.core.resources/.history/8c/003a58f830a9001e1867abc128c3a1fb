@@ -1,0 +1,104 @@
+package com.mini.loginBackend.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.mini.loginBackend.dto.LoginDTO;
+import com.mini.loginBackend.dto.SignupDTO;
+import com.mini.loginBackend.dto.UserDTO;
+import com.mini.loginBackend.entity.User;
+import com.mini.loginBackend.repository.UserRepository;
+import com.mini.loginBackend.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Override
+	public ResponseEntity<String> signUp(SignupDTO signupDTO) {
+		System.out.println(signupDTO);
+		Optional<User> optionalUserDb = userRepository.findUserByEmailId(signupDTO.getEmailId());
+		if (optionalUserDb.isPresent() && signupDTO.getRole().equals("user")) {
+//			return "EmailId Already Exists !";
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("EmailId Already Exists !");
+		} else {
+			if (signupDTO.getRole().equals("user")) {
+				User user = new User();
+				user.setName(signupDTO.getName());
+				user.setEmailId(signupDTO.getEmailId());
+				user.setPassword(signupDTO.getPassword());
+				user.setRole(signupDTO.getRole());
+				userRepository.save(user);
+//				return "User Created Successful !!!";
+				return ResponseEntity.ok("User created successful");
+			}
+//			return "Cannot create admin! Try as user";
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cannot create admin! Try as user");
+		}
+	}
+
+	@Override
+	public ResponseEntity<String> login(LoginDTO loginDTO) {
+		Optional<User> optionalUserDb = userRepository.findUserByEmailId(loginDTO.getEmailId());
+		if (optionalUserDb.isPresent()) {
+			User dbUser = optionalUserDb.get();
+			if (loginDTO.getPassword().equals(dbUser.getPassword())) {
+				if (loginDTO.getRole().equals("user")) {
+//					return "User Login Success";
+					return ResponseEntity.ok("User Login Success");
+				} else if (loginDTO.getRole().equals("admin") && loginDTO.getEmailId().equals("admin1@gmail.com")) {
+//					return "Admin Login Success";
+					return ResponseEntity.ok("Admin Login Success");
+				} else {
+//					return "Invalid Login Credentials";
+					return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Login Credentials");
+				}
+			}
+		}
+//		return "User not found! Signup first";
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User not found! Signup first");
+	}
+
+	@Override
+	public ResponseEntity<String> update(UserDTO userDTO, Long id) {
+		Optional<User> optionalUserDb = userRepository.findById(id);
+		if (optionalUserDb.isPresent()) {
+			User user = optionalUserDb.get();
+			user.setName(userDTO.getName());
+			user.setPassword(userDTO.getPassword());
+			userRepository.save(user);
+//			return "User Updated!";
+			return ResponseEntity.ok("User Updated!");
+		}
+//		return "User not found! Signup first";
+		return ResponseEntity.ok("User not found! Signup first");
+	}
+
+	@Override
+	public List<UserDTO> getAllUsers() {
+		 List<User> users = userRepository.findAll();
+		 List<UserDTO> userDTO = new ArrayList<>();
+		 for(User user: users) {
+			 UserDTO getAllUser = new UserDTO();
+			 BeanUtils.copyProperties(user, getAllUser);
+			 userDTO.add(getAllUser);
+		 }
+		 return userDTO;
+	}
+
+	@Override
+	public User getUserById(Long id) {
+		return userRepository.findById(id);
+	}
+
+
+}

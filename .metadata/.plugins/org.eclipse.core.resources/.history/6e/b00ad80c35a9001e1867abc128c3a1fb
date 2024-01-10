@@ -1,0 +1,13 @@
+package com.mini.loginBackend.service;
+
+import com.mini.loginBackend.dto.AdminDTO;
+
+public interface AdminService {
+
+//	String signUp(AdminDTO adminDTO);
+
+	String login(AdminDTO adminDTO);
+	
+//	List<UserDTO> getAllUsers();
+
+}

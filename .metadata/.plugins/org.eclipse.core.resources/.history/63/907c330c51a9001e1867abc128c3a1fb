@@ -1,0 +1,5 @@
+package com.mini.loginBackend.repository;
+
+public interface AdminRepository {
+
+}

@@ -1,0 +1,44 @@
+package com.mini.loginBackend.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mini.loginBackend.dto.AdminDTO;
+import com.mini.loginBackend.service.AdminService;
+
+@RestController
+@RequestMapping("/admin")
+public class AdminController {
+	
+	@Autowired
+	private AdminService adminService;
+	
+//	@PostMapping("/signup")
+//	public String signUp(@RequestBody AdminDTO adminDTO){
+//		return adminService.signUp(adminDTO);
+//	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> adminLogin(@RequestBody AdminDTO adminDTO){
+//		return adminService.adminLogin(adminDTO);
+		return null
+	}
+	
+	@GetMapping("/getalladmin")
+	public List<AdminDTO> getAllAdmins(){
+		return adminService.getAllAdmins();
+	}
+	
+//	@GetMapping("/getallusers")
+//	public List<UserDTO> getAllUsers(){
+//		return userServc.getAllUsers();
+//	}
+
+}

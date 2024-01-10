@@ -1,0 +1,28 @@
+package com.mini.loginBackend.service;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.mini.loginBackend.dto.LoginDTO;
+import com.mini.loginBackend.dto.SignupDTO;
+import com.mini.loginBackend.dto.UserDTO;
+import com.mini.loginBackend.entity.User;
+
+public interface UserService {
+
+	ResponseEntity<String> signUp(SignupDTO signupDTO);
+
+	ResponseEntity<String> login(LoginDTO loginDTO);
+
+//	String update(UserUpdateDTO userUpdateDTO, Long id);
+
+	ResponseEntity<String> update(UserDTO userDTO, Long id);
+
+	List<UserDTO> getAllUsers();
+
+	User getUserById(Long id);
+
+	ResponseEntity<String> delete(Long id);
+
+}

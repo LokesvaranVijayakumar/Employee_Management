@@ -1,0 +1,5 @@
+package com.mini.loginBackend.controller;
+
+public class AdminController {
+
+}
