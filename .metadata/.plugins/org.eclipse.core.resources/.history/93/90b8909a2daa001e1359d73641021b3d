@@ -1,8 +1,0 @@
-package com.mini.loginBackend.dto;
-
-public class UpdateEmployeeDTO {
-
-	private String name;
-	private String emailId;
-	private String password;
-}

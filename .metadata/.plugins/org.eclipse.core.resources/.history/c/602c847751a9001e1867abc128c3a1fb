@@ -1,5 +1,0 @@
-package com.mini.loginBackend.dto;
-
-public class AdminDTO {
-
-}

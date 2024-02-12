@@ -23,7 +23,7 @@ import com.mini.loginBackend.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:50464/")
 public class EmployeeController {
 
 	@Autowired

@@ -1,9 +1,0 @@
-package com.mini.loginBackend.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.mini.loginBackend.entity.Admin;
-
-public interface AdminRepository extends JpaRepository<Admin, Long> {
-
-}
